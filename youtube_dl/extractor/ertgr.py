@@ -93,12 +93,27 @@ class ERTGRIE(InfoExtractor):
                     break
 
         # description cleanup
+        logging.error(description_html)
         description_html = re.sub(r'\s*>\s+', '>', description_html)
         description_html = re.sub(r'\s+<\s*', '<', description_html)
         description_html = re.sub(r'\s+', ' ', description_html)
         description_html = re.sub(r'<div>', '<p>', description_html)
         description_html = re.sub(r'</div>', '</p>', description_html)
         description = clean_html(description_html)
+        logging.error(description_html)
+        logging.error(description)
+        #description_html = re.sub(r'</(p|div)>', '\g<0><br />', description_html)
+        #description_html = re.sub(r'<br\s*/>', '\g<0>\n', description_html)
+        #logging.error(clean_html(description_html))
+
+
+    #https://www.ertflix.gr/category/archeio/froytopia/froytopia-s02/
+    #<div class="inside-page-thumb-titles">
+	#<a href="https://www.ertflix.gr/archeio/froytopia-s2-ep2/">
+		#Φρουτοπία Σ2:ΕΠ2</a>
+	#</div>
+
+    #https://www.ertflix.gr/category/archeio/froytopia/
 
         data = {
             'id': video_id,
